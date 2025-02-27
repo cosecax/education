@@ -1,5 +1,12 @@
+import { createVNode, createDOMNode } from './vdom';
+import { mount } from './dom'
 
-import { sum } from './modules/sum';
+const vNode = createVNode("div", { class: "container" }, [
+  createVNode("h1", {}, ["Hello, Virtual DOM"]),
+  "Text node without tags",
+  createVNode("img", { src: "https://i.ibb.co/M6LdN5m/2.png", width: 200 })
+]);
 
-const root = document.querySelector('#root');
-root.textContent = sum(6, -1).toString();
+const node = createDOMNode(vNode)
+const app = document.getElementById("root");
+mount(node, app);
